@@ -6,16 +6,16 @@ package service;
 public class SearchingMessage {
 
     // Поисковый запрос от клиента
-    private String searcheMessage;
+    private String searchMessage;
 
-    public SearchingMessage(String searcheMessage) {
-        this.searcheMessage = searcheMessage;
+    public SearchingMessage(String searchMessage) {
+        this.searchMessage = searchMessage;
     }
 
     // Метод разбивающий предложение на отдельные слова и вставляющий плюс между ними
     public String splitMessage() {
 
-       String splitMessageComplete = searcheMessage.replaceAll(" ", "+");
+        String splitMessageComplete = searchMessage.replaceAll(" ", "+");
 
         return splitMessageComplete;
     }

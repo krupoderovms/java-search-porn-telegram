@@ -4,9 +4,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 
 import java.util.ArrayList;
 
-/**
- * Created by javastream on 26.02.2019.
- */
+
 public class Videos {
 
     private ArrayList<Message> message;

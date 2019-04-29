@@ -11,21 +11,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Поиск ССЫЛОК НА СТРАНИЦЫ видео
+ * Поиск ссылок на страницу видео
  */
 public class HrefsWebpagesSearch {
 
     private String url;               // базовый url сайта, прописан в service.Properties
-    private String serchMsgFormated;  // Отформатированный поисковый запрос, готовый к работе
+    private String searchMsgFormatted;  // Отформатированный поисковый запрос, готовый к работе
     private String urlSearch;         // Полный url поискового запроса
 
+    // Основной метод по поиску ссылок на страницы роликов
+    public ArrayList<String> getHrefsOfVideos(String searchMsg) throws IOException {
 
-    // ОСНОВНОЙ МЕТОД по поиску ссылок на страницы роликов
-    public ArrayList<String> getHrefsOfVideos(String serchMsg) throws IOException {
-
-        this.serchMsgFormated = new SearchingMessage(serchMsg).splitMessage();
+        this.searchMsgFormatted = new SearchingMessage(searchMsg).splitMessage();
         this.url = Properties.URL;
-        this.urlSearch = url + "/search/" + serchMsgFormated;
+        this.urlSearch = url + "/search/" + searchMsgFormatted;
 
         // Парсим веб-страницу, полученную после поиска по поисковому выражению пользователя и получаем массив элементов ЗАГОЛОВКОВ
         Elements hrefsElements = parseDocument(urlSearch);
@@ -35,7 +34,6 @@ public class HrefsWebpagesSearch {
 
         return hrefsOfVideos;
     }
-
 
     // Метод парсинга веб-страницы с помощью библиотеки JSOUP
     private Elements parseDocument(String urlSearch) throws IOException {
@@ -56,6 +54,4 @@ public class HrefsWebpagesSearch {
         }
         return hrefVideo;
     }
-
-
 }

@@ -2,7 +2,6 @@ package service;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 /**
  * Отправка пользователю простого сообщения
@@ -20,5 +19,4 @@ public class SendTextMsg {
 
         return sendMessage;
     }
-
 }

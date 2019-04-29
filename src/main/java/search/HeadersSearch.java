@@ -11,21 +11,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Поиск ЗАГОЛОВКОВ к видео (названия роликов)
+ * Поиск заголовков к видео (названия роликов)
  */
 public class HeadersSearch {
 
-    private String url;               // базовый url сайта, прописан в service.Properties
-    private String serchMsgFormated;  // Отформатированный поисковый запрос, готовый к работе
-    private String urlSearch;         // Полный url поискового запроса
+    private String url;                // базовый url сайта, прописан в service.Properties
+    private String searchMsgFormatted; // Отформатированный поисковый запрос, готовый к работе
+    private String urlSearch;          // Полный url поискового запроса
 
 
     // ОСНОВНОЙ МЕТОД по поиску текстовых названий роликов
     public ArrayList<String> getHeadersOfVideos(String serchMsg) throws IOException {
 
-        this.serchMsgFormated = new SearchingMessage(serchMsg).splitMessage();
+        this.searchMsgFormatted = new SearchingMessage(serchMsg).splitMessage();
         this.url = Properties.URL;
-        this.urlSearch = url + "/search/" + serchMsgFormated;
+        this.urlSearch = url + "/search/" + searchMsgFormatted;
 
         // Парсим веб-страницу, полученную после поиска по поисковому выражению пользователя и получаем массив элементов ЗАГОЛОВКОВ
         Elements headerElements = parseDocument(urlSearch);
@@ -36,7 +36,6 @@ public class HeadersSearch {
         return headersVideo;
     }
 
-
     // Метод парсинга веб-страницы с помощью библиотеки JSOUP
     public Elements parseDocument(String urlSearch) throws IOException {
         // Получаем JSOUP обьект страницы по адресу нашего запроса
@@ -44,7 +43,6 @@ public class HeadersSearch {
         Elements headerElements = doc.getElementsByAttributeValue("class", "thumb-under");
         return headerElements;
     }
-
 
     // Возвращает массив заголовков к видео
     public ArrayList<String> getArraysOfHreffs(Elements headerElements) {
@@ -58,5 +56,4 @@ public class HeadersSearch {
         }
         return headlineVideo;
     }
-
 }

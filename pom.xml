@@ -7,6 +7,8 @@
     <groupId>com.krupoderov.telegramapp</groupId>
     <artifactId>javaTelegramPorn</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
     <build>
         <plugins>
             <plugin>
@@ -41,7 +43,6 @@
             </plugin>
         </plugins>
     </build>
-
     <dependencies>
         <!-- telegram -->
         <dependency>
@@ -59,9 +60,8 @@
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots-abilities</artifactId>
-            <version>4.2</version>
+            <version>4.1.2</version>
         </dependency>
-
     </dependencies>
 
 </project>

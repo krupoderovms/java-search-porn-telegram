@@ -2,21 +2,20 @@ package service;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.util.ArrayList;
 
 /**
  * Основное меню бота - фиксировано и всегда доступно
  */
-public class FixedKeybord {
+public class FixedKeyboard {
 
     ReplyKeyboardMarkup replyKeyboardMarkup;
     ArrayList<KeyboardRow> keyboard;
 
-    public FixedKeybord() {
+    public FixedKeyboard() {
 
         this.replyKeyboardMarkup = new ReplyKeyboardMarkup();
         this.keyboard = new ArrayList<KeyboardRow>();
@@ -28,7 +27,7 @@ public class FixedKeybord {
 
         // Создаем строки
         KeyboardRow keyboardFirstRow = new KeyboardRow();
-        KeyboardRow keyboardSecondRow = new KeyboardRow();
+//        KeyboardRow keyboardSecondRow = new KeyboardRow();
 
         // Основные установки для клавиатуры
         replyKeyboardMarkup.setSelective(true);
@@ -53,6 +52,5 @@ public class FixedKeybord {
         sendMessage.setText(s);
 
         return sendMessage;
-
     }
 }

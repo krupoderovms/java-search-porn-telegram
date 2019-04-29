@@ -19,7 +19,7 @@ public class Find {
     // Массив caption
     ArrayList<String> arrayHeaders;
 
-    // Заполняем массив href
+    // Массив href
     ArrayList<String> arrayHrefs;
 
     // Массив UrlImg
@@ -52,7 +52,7 @@ public class Find {
             arrMP4links.clear();
         }
 
-        // Поисковый запрос без /http. По этим поисковым словам будем выдергивать видео из поиска сайта с видосами
+        // Поисковый запрос без /http. По этим поисковым словам будем выдергивать видео из поиска сайта
         String messageText = message.getText();
         String searchingMessage = messageText.replaceAll("/find", "");
         System.out.println(searchingMessage);

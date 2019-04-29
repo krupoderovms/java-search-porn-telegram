@@ -1,45 +1,41 @@
 import command.Find;
 import command.MoreSelect;
 import model.Videos;
-import org.apache.http.HttpHost;
-import org.apache.http.client.config.RequestConfig;
 import org.telegram.abilitybots.api.bot.AbilityBot;
-import org.telegram.abilitybots.api.db.DBContext;
-import org.telegram.abilitybots.api.objects.Ability;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
-import org.telegram.telegrambots.meta.ApiContext;
-import service.*;
-import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import service.FixedKeyboard;
+import service.Properties;
+import service.SendTextMsg;
+import service.SendingPhoto;
 import service.keyboards.InlineKeyboard;
-import service.keyboards.MoreKeyboards;
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.lang.Math.toIntExact;
-import static org.telegram.abilitybots.api.objects.Locality.ALL;
-import static org.telegram.abilitybots.api.objects.Privacy.PUBLIC;
 
 /**
  * Бот отвечающий за отправку ссылок на видео в чат по запросу /http
  */
-public class Bot extends TelegramLongPollingBot {
-
-    private static String BOT_NAME = "FriendlyPornAssistant";
-    private static String BOT_TOKEN = "807187285:AAGHUOlO_N33rDEL3f1PTC3tnY94kvrsNP0";
+public class Bot extends AbilityBot {
 
     Find find = new Find();
 
     int lastIdOfVideo = 0;
+
+    protected Bot(String botToken, String botUsername, DefaultBotOptions options) {
+        super(botToken, botUsername, options);
+    }
+
+    @Override
+    public int creatorId() {
+        return 0;
+    }
 
     public void onUpdateReceived(Update update) {
 
@@ -77,7 +73,7 @@ public class Bot extends TelegramLongPollingBot {
             } else if (messageText.contains("/start")) {
                 // Стартовая информация для пользователей
                 exeCute(new SendTextMsg().sendTextMsg(message, "Для поиска видео задайте команду /find и поисковый запрос. \nНапример, /find asian hot girls или /find горячие азатские девочки"));
-                exeCute(new FixedKeybord().install(message, "В меню доступна навигация по разделам видео. \nТам же есть список основных команд по управлению ботом."));
+                exeCute(new FixedKeyboard().install(message, "В меню доступна навигация по разделам видео. \nТам же есть список основных команд по управлению ботом."));
             }
 
             // Команда key - вызов меню для выбора рубрик (вызывает инлайн клавиатуру)
@@ -105,8 +101,6 @@ public class Bot extends TelegramLongPollingBot {
                 exeCute(new SendTextMsg().sendTextMsg(message, "/find           |   Поиск ссылок на видео. Напр, /find мамка админа"));
                 exeCute(new SendTextMsg().sendTextMsg(message, "/more           |   Показать еще 5 видео, работает после команды /find или выбора категории"));
             }
-
-
         }
 
         // Если был зарегистрирован колбэк, обрабатываем его
@@ -172,7 +166,6 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
     }
 
     public void exeCute(SendMessage sendMessage) {
@@ -200,16 +193,6 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public String getBotUsername() {
-        return BOT_NAME;
-    }
-
-    @Override
-    public String getBotToken() {
-        return BOT_TOKEN;
     }
 }
 

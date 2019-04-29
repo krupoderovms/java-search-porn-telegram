@@ -13,10 +13,9 @@ public class SendingPhoto {
         SendPhoto sendPhotoRequest = new SendPhoto();
         sendPhotoRequest.setChatId(message.getChatId());
         sendPhotoRequest.setParseMode("HTML");
-        String captionHref = "<a href='"+href+"'>"+caption+"</a>";
+        String captionHref = "<a href='" + href + "'>" + caption + "</a>";
         sendPhotoRequest.setCaption(captionHref);
         sendPhotoRequest.setPhoto(urlImg);
         return sendPhotoRequest;
-
     }
 }

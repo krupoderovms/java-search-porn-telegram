@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Поиск ЗАСТАВКИ (ОСНОВНОГО ПОСТЕРА) для данного роликов
+ * Поиск заставок для роликов
  */
 public class ImagesSearch {
 
@@ -21,11 +21,11 @@ public class ImagesSearch {
     Document doc = null;
 
     // ОСНОВНОЙ МЕТОД получения базовой картинки для страницы с видеороликом
-    public ArrayList<String> getImages(String serchMsg) {
+    public ArrayList<String> getImages(String searchMsg) {
 
         try {
             // Парсим страницу по переданному URL и находим ссылку на IMG заставку для ролика
-            ArrayList<String> srcImage = parseDocument(serchMsg);
+            ArrayList<String> srcImage = parseDocument(searchMsg);
             return srcImage;
 
         } catch (Exception e) {
@@ -35,9 +35,9 @@ public class ImagesSearch {
     }
 
     // Метод парсинга веб-страницы с помощью библиотеки JSOUP
-    public ArrayList<String> parseDocument(String serchMsg) throws IOException {
+    public ArrayList<String> parseDocument(String searchMsg) throws IOException {
 
-        this.serchMsgFormated = new SearchingMessage(serchMsg).splitMessage();
+        this.serchMsgFormated = new SearchingMessage(searchMsg).splitMessage();
         this.url = Properties.URL;
         this.urlSearch = url + "/search/" + serchMsgFormated;
 

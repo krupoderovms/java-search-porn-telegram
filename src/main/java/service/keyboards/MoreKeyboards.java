@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class MoreKeyboards {
 
-
     ReplyKeyboardMarkup replyKeyboardMarkup;
     ArrayList<KeyboardRow> keyboard;
 
@@ -48,4 +47,4 @@ public class MoreKeyboards {
         return sendMessage;
 
     }
-    }
+}
