@@ -2,8 +2,8 @@ package secret;
 
 public class BotConfig {
 
-    private static final String BOT_NAME = "FriendlyPornAssistant";
-    private static final String BOT_TOKEN = "807187285:AAGHUOlO_N33rDEL3f1PTC3tnY94kvrsNP0";
+    private static final String BOT_NAME = "Your_bot_name";
+    private static final String BOT_TOKEN = "Your_bot_token";
 
     private static String PROXY_HOST = "..." /* proxy host */;
     private static Integer PROXY_PORT = 3128 /* proxy port */;
